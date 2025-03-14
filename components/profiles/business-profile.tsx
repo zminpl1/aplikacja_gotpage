@@ -2,7 +2,7 @@
 
 import { CardFooter } from "@/components/ui/card"
 
-import { useState } from 'react'
+import { useState } from "react"
 import Link from "next/link"
 import {
   Building,
@@ -269,13 +269,37 @@ export default function BusinessProfilePage({ businessData }: { businessData: an
           </TabsContent>
 
           <TabsContent value="reviews" className="space-y-6">
-            {businessData.reviewsList &&
-              businessData.reviewsList.map((review: any) => (
-                <div key={review.id}>
-                  {/* Renderowanie właściwości recenzji */}
-                  <p>{review.content}</p>
-                </div>
-              ))}
+            {Array.isArray(businessData.reviewsList) ? (
+              businessData.reviewsList.length > 0 ? (
+                businessData.reviewsList.map((review) => (
+                  <Card key={review.id} className="mb-4">
+                    <CardContent className="pt-6">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center">
+                          <div className="font-medium">{review.user}</div>
+                          <div className="ml-4 flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`h-4 w-4 ${
+                                  i < review.rating ? "text-yellow-500 fill-yellow-500" : "text-gray-300"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        <div className="text-sm text-muted-foreground">{review.date}</div>
+                      </div>
+                      <p className="text-muted-foreground">{review.content}</p>
+                    </CardContent>
+                  </Card>
+                ))
+              ) : (
+                <p>{t("profile.business.noReviews")}</p>
+              )
+            ) : (
+              <p>{t("profile.business.noReviews")}</p>
+            )}
           </TabsContent>
 
           <TabsContent value="analytics" className="space-y-6">
@@ -293,3 +317,4 @@ export default function BusinessProfilePage({ businessData }: { businessData: an
   )
 }
 
+  

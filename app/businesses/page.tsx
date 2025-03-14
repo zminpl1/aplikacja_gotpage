@@ -1,4 +1,19 @@
-import { Search, Filter, MapPin, Star, ExternalLink, CheckCircle } from "lucide-react"
+
+
+export const dynamic = "force-dynamic"
+
+export default function BusinessPage() {
+  return (
+    <div className="p-8 text-center">
+      <h1 className="text-2xl font-bold mb-4">Strona w trakcie aktualizacji</h1>
+      <p>Ta sekcja jest obecnie aktualizowana i będzie dostępna wkrótce.</p>
+    </div>
+  )
+}
+
+
+
+/*import { Search, Filter, MapPin, Star, ExternalLink, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -271,4 +286,4 @@ export default function BusinessesPage() {
     </div>
   )
 }
-
+*/
