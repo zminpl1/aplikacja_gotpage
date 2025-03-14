@@ -2,7 +2,7 @@
 
 import { CardFooter } from "@/components/ui/card"
 
-import { useState } from "react"
+import { useState } from 'react'
 import Link from "next/link"
 import {
   Building,
@@ -268,8 +268,25 @@ export default function BusinessProfilePage({ businessData }: { businessData: an
             </div>
           </TabsContent>
 
-          {/* Other tabs content remains the same but with translations */}
-          {/* ... */}
+          <TabsContent value="reviews" className="space-y-6">
+            {businessData.reviewsList &&
+              businessData.reviewsList.map((review: any) => (
+                <div key={review.id}>
+                  {/* Renderowanie właściwości recenzji */}
+                  <p>{review.content}</p>
+                </div>
+              ))}
+          </TabsContent>
+
+          <TabsContent value="analytics" className="space-y-6">
+            {/* Analytics content */}
+            <p>{t("profile.business.analyticsContent")}</p>
+          </TabsContent>
+
+          <TabsContent value="settings" className="space-y-6">
+            {/* Settings content */}
+            <p>{t("profile.business.settingsContent")}</p>
+          </TabsContent>
         </Tabs>
       </div>
     </div>
